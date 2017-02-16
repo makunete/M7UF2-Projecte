@@ -32,26 +32,25 @@ class Taules extends Migration
             $table->string("categorias");
             $table->timestamps();
         });
-/*
+
         Schema::create('ventas', function(Blueprint $table) {
             $table->increments("id");
             $table->string("videojuego");
             $table->integer("num_ventas");
             $table->timestamps();
         });
-*/
         Schema::create('categorias_videojuegos', function(Blueprint $table) {
-            $table->increments("id");
-            $table->integer("id_categoria");
-            $table->integer("id_videojuego");
+            $table->integer("id_intermedia");
+            $table->integer("id_categoria")->unsigned();
+            $table->integer("id_videojuego")->unsigned();
 
         });
 
-/*        Schema::table('categorias_videojuegos',function(Blueprint $table) {
+        Schema::table('categorias_videojuegos',function(Blueprint $table) {
             $table->foreign("id_categoria")->references('id')->on('categorias')
                     ->onUpdate('cascade')->onDelete('cascade');
         });
-*/
+
             Schema::table('categorias_videojuegos',function(Blueprint $table) {
             $table->foreign("id_videojuego")->references('id')->on('videojuegos')
                     ->onUpdate('cascade')->onDelete('cascade');
